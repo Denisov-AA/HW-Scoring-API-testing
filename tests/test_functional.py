@@ -55,7 +55,7 @@ class TestSuite(unittest.TestCase):
         return api.method_handler(
             request={"body": request, "headers": self.headers},
             ctx=self.context,
-            store=self.store
+            store=self.store,
         )
 
     def set_valid_auth(self, request):
