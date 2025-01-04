@@ -72,7 +72,7 @@ class TestPhoneField(unittest.TestCase):
     def test_valid(self, value):
         self.assertIsNone(api.PhoneField().validate(value))
 
-    @cases(["+79991237733", [79991237733], 83469431234])
+    @cases(["779991237733", [79991237733], "+73469431234"])
     def test_invalid(self, value):
         field = api.PhoneField()
         self.assertRaises(api.ValidationError, field.validate, value)

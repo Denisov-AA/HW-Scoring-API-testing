@@ -53,6 +53,9 @@ jobs:
           poetry config virtualenvs.create false
           poetry install
 
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.7.0
+
       - name: Run unittests
         run: |
           python -m unittest discover tests/

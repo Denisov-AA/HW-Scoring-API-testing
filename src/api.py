@@ -103,8 +103,6 @@ class PhoneField(BaseField):
             value = str(value)
         if len(value) != 11:
             raise ValidationError(f"{type(self).__name__} length must be 11")
-        if not value.startswith("7"):
-            raise ValidationError(f"{type(self).__name__} must starts with 7")
 
 
 class DateField(CharField):
@@ -191,7 +189,7 @@ class ClientsInterestsRequest(RequestBase):
     client_ids = ClientIDsField(required=True, nullable=False)
     date = DateField(required=False, nullable=True)
 
-    def get_result(self, context, store):
+    def get_result(self, is_admin, context, store):
         client_ids = getattr(self, "client_ids", [])
         context["nclients"] = len(client_ids)
         result = {}

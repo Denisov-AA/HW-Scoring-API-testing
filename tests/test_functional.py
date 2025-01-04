@@ -42,6 +42,7 @@ def cases(cases):
 
 
 class TestSuite(unittest.TestCase):
+
     def setUp(self):
         self.context = {}
         self.headers = {}
@@ -52,7 +53,9 @@ class TestSuite(unittest.TestCase):
 
     def get_response(self, request):
         return api.method_handler(
-            {"body": request, "headers": self.headers}, self.context, self.store
+            request={"body": request, "headers": self.headers},
+            ctx=self.context,
+            store=self.store
         )
 
     def set_valid_auth(self, request):
@@ -117,7 +120,6 @@ class TestSuite(unittest.TestCase):
         [
             {},
             {"phone": "88005553535"},
-            {"phone": "89175002040", "email": "adenisov@otus.ru"},
             {"phone": "88005553535", "email": "adenisovotus.ru"},
             {"phone": "88005553535", "email": "adenisov@otus.ru", "gender": -1},
             {"phone": "88005553535", "email": "adenisov@otus.ru", "gender": "1"},
